@@ -7,9 +7,9 @@
 	<title>Books</title>
 </svelte:head>
 
-<h1>Books</h1>
+<h2>Books</h2>
 
-<ul>
+<ul class="list">
 	{#each books as book (book.id)}
 		<li>
 			<a href="/book/{book.id}">

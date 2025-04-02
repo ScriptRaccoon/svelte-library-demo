@@ -4,18 +4,18 @@
 
 <header>
 	<h1>Svelte Library Demo</h1>
-</header>
 
-<nav>
-	<ul>
-		<li>
-			<a href="/">Books</a>
-		</li>
-		<li>
-			<a href="/genres">Genres</a>
-		</li>
-	</ul>
-</nav>
+	<nav>
+		<ul>
+			<li>
+				<a href="/">Books</a>
+			</li>
+			<li>
+				<a href="/genres">Genres</a>
+			</li>
+		</ul>
+	</nav>
+</header>
 
 <main>
 	<slot></slot>
@@ -24,11 +24,12 @@
 <style>
 	header {
 		text-align: center;
-		padding-top: 1rem;
+		padding-block: 1.25rem;
+		background-color: var(--primary-color);
 	}
 
 	nav {
-		padding-block: 0.5rem;
+		margin-top: 0.25rem;
 	}
 
 	ul {
@@ -39,8 +40,9 @@
 	}
 
 	main {
-		max-width: 54rem;
+		max-width: 42rem;
 		margin-inline: auto;
-		padding-inline: 1rem;
+		padding: 1rem;
+		margin-bottom: 1rem;
 	}
 </style>

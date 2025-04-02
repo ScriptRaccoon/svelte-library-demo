@@ -7,9 +7,9 @@
 	<title>Genres</title>
 </svelte:head>
 
-<h1>Genres</h1>
+<h2>Genres</h2>
 
-<ul>
+<ul class="list">
 	{#each genres as genre (genre.id)}
 		<li>
 			<a href="/genre/{genre.id}">
