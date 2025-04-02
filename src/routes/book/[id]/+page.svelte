@@ -2,24 +2,31 @@
 	import StarRating from 'svelte-star-rating'
 	let { data } = $props()
 	let book = $derived(data.book)
+	let user_rating = $state(data.user_rating)
 
 	const rating_texts = ['Terrible', 'Bad', 'Okay', 'Good', 'Excellent']
 
-	let user_rating = $state(4)
+	let selected_user_rating = $state(data.user_rating ?? 4)
 	let form_status = $state('')
 
 	async function handle_submit(e: SubmitEvent) {
 		e.preventDefault()
+		if (user_rating !== null) return
 		form_status = ''
 		const res = await fetch('/api/rating', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
 				book_id: book.id,
-				rating: user_rating,
+				rating: selected_user_rating,
 			}),
 		})
+
 		form_status = res.ok ? 'Rating submitted!' : 'Error submitting rating'
+
+		if (res.ok) {
+			user_rating = selected_user_rating
+		}
 	}
 </script>
 
@@ -58,17 +65,28 @@
 	<h3>Rate the book</h3>
 
 	<form class="rating-form" onsubmit={handle_submit}>
-		<select bind:value={user_rating} class="select" required>
+		<select
+			bind:value={selected_user_rating}
+			class="select"
+			required
+			disabled={user_rating !== null}
+		>
 			{#each { length: 5 } as _, i}
 				<option value={i + 1}>{i + 1} &ndash; {rating_texts[i]}</option>
 			{/each}
 		</select>
-		<button class="button" type="submit">Submit rating</button>
+		<button class="button" type="submit" disabled={user_rating !== null}
+			>Submit rating</button
+		>
 	</form>
 
 	<div class="form_status" aria-live="polite">
 		{form_status}
 	</div>
+
+	{#if user_rating !== null}
+		<p>You have rated the book.</p>
+	{/if}
 </section>
 
 <style>

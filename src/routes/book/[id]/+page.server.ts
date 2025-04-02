@@ -4,13 +4,20 @@ import type { Book } from '$lib/schemas'
 
 export const load: PageServerLoad = async (event) => {
 	const id = event.params.id
-	const res = await event.fetch(`/api/book?id=${id}`)
+	const res_book = await event.fetch(`/api/book?id=${id}`)
 
-	if (!res.ok) {
-		return error(res.status, 'Failed to fetch book')
+	if (!res_book.ok) {
+		return error(res_book.status, 'Failed to fetch book')
 	}
 
-	const book: Book = await res.json()
+	const book: Book = await res_book.json()
 
-	return { book }
+	const res_rating = await event.fetch(`/api/rating?book_id=${id}`)
+	if (!res_rating.ok) {
+		return error(res_rating.status, 'Failed to fetch rating')
+	}
+
+	const rating_data: { rating: number } = await res_rating.json()
+
+	return { book, user_rating: rating_data.rating }
 }

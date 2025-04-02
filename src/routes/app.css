@@ -83,6 +83,11 @@ button {
 	&:focus-visible {
 		outline: 2px solid var(--font-color);
 	}
+
+	&[disabled] {
+		cursor: not-allowed;
+		opacity: 0.5;
+	}
 }
 
 select {
