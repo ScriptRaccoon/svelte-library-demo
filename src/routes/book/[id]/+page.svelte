@@ -2,11 +2,10 @@
 	import StarRating from 'svelte-star-rating'
 	let { data } = $props()
 	let book = $derived(data.book)
-	let saved_user_rating = $derived(data.user_rating)
 
 	const rating_texts = ['Terrible', 'Bad', 'Okay', 'Good', 'Excellent']
 
-	let selected_user_rating = $state(data.user_rating ?? null)
+	let selected_user_rating = $state(data.user_rating)
 	let form_status = $state('')
 
 	async function handle_submit(e: SubmitEvent) {
@@ -18,7 +17,7 @@
 			return
 		}
 
-		if (saved_user_rating === null) {
+		if (data.user_rating === null) {
 			await submit_user_rating()
 		} else {
 			await update_user_rating()
@@ -36,14 +35,10 @@
 		})
 
 		form_status = res.ok ? 'Rating submitted!' : 'Error submitting rating'
-
-		if (res.ok) {
-			saved_user_rating = selected_user_rating
-		}
 	}
 
 	async function update_user_rating() {
-		if (selected_user_rating === saved_user_rating) {
+		if (selected_user_rating === data.user_rating) {
 			form_status = 'No changes made'
 			return
 		}
@@ -58,10 +53,6 @@
 		})
 
 		form_status = res.ok ? 'Rating updated!' : 'Error updating rating'
-
-		if (res.ok) {
-			saved_user_rating = selected_user_rating
-		}
 	}
 
 	let submit_button_text = $state(
