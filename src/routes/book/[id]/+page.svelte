@@ -34,7 +34,13 @@
 	<title>{book.title}</title>
 </svelte:head>
 
-<h2>{book.title}</h2>
+<p>{book.author}</p>
+
+<h2 class="title">{book.title}</h2>
+
+{#if book.description}
+	<p class="description">{book.description}</p>
+{/if}
 
 <section class="rating-container" aria-label="rating">
 	<StarRating rating={book.average_rating} />
@@ -43,22 +49,17 @@
 	</div>
 </section>
 
-<section aria-label="book details">
-	{#if book.published_year}
-		<p class="year">{book.published_year}</p>
-	{/if}
-
-	<p class="author">by {book.author}</p>
-
+<section>
+	<h3>Details</h3>
 	<div>
-		<a class="genre" href="/genre/{book.genre_id}">
+		<strong>Year of publication</strong> &ndash; {book.published_year}
+	</div>
+	<div>
+		<strong>Genre</strong> &ndash;
+		<a href="/genre/{book.genre_id}">
 			{book.genre}
 		</a>
 	</div>
-
-	{#if book.description}
-		<p class="description">{book.description}</p>
-	{/if}
 </section>
 
 <section>
@@ -85,11 +86,23 @@
 	</div>
 
 	{#if user_rating !== null}
-		<p>You have rated the book.</p>
+		<p>You have rated the book with {user_rating}.</p>
 	{/if}
 </section>
 
 <style>
+	.title {
+		margin-top: -0.5rem;
+	}
+
+	section {
+		margin-bottom: 1.5rem;
+	}
+
+	.description {
+		font-size: 1.25rem;
+	}
+
 	.rating-container {
 		display: flex;
 		align-items: start;
@@ -110,30 +123,5 @@
 			flex-direction: row;
 			gap: 1rem;
 		}
-	}
-
-	.year {
-		color: var(--secondary-font-color);
-		font-size: 1.25rem;
-	}
-
-	.author {
-		font-style: italic;
-		font-size: 1.25rem;
-	}
-
-	.genre {
-		display: inline-block;
-		text-decoration: none;
-		background-color: var(--primary-color);
-		padding: 0.15rem 0.8rem;
-		border-radius: 100vw;
-		font-weight: bold;
-		font-size: 0.825rem;
-		text-transform: uppercase;
-	}
-
-	.description {
-		font-size: 1.25rem;
 	}
 </style>
