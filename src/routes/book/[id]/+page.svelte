@@ -5,7 +5,7 @@
 
 	const rating_texts = ['Terrible', 'Bad', 'Okay', 'Good', 'Excellent']
 
-	let user_rating = $state<null | number>(null)
+	let user_rating = $state(4)
 	let form_status = $state('')
 
 	async function handle_submit(e: SubmitEvent) {
