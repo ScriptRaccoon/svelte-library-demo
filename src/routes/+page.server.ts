@@ -10,7 +10,7 @@ const BookListSchema = z.array(
 )
 
 export const load: PageServerLoad = async ({ fetch }) => {
-	const res = await fetch('/api/titles')
+	const res = await fetch('/api/books')
 
 	if (!res.ok) {
 		return error(res.status, 'Failed to fetch books')
