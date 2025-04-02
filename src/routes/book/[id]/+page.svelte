@@ -11,6 +11,8 @@
 
 	async function handle_submit(e: SubmitEvent) {
 		e.preventDefault()
+		form_status = ''
+
 		if (selected_user_rating === null) {
 			form_status = 'Please select a rating'
 			return
