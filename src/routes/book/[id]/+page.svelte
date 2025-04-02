@@ -82,7 +82,9 @@
 	<title>{book.title}</title>
 </svelte:head>
 
-<p>{book.author}</p>
+<p>
+	<a href="/author/{book.author_id}">{book.author_name}</a>
+</p>
 
 <h2 class="title">{book.title}</h2>
 
@@ -105,7 +107,7 @@
 	<div>
 		<strong>Genre</strong> &ndash;
 		<a href="/genre/{book.genre_id}">
-			{book.genre}
+			{book.genre_name}
 		</a>
 	</div>
 </section>

@@ -40,9 +40,10 @@ export const RatingResponseSchema = z.object({
 export const BookSchema = z.object({
 	id: z.number(),
 	title: z.string(),
-	author: z.string(),
+	author_name: z.string(),
+	author_id: z.number(),
 	description: z.string().nullable(),
-	genre: z.string(),
+	genre_name: z.string(),
 	genre_id: z.number(),
 	published_year: z.number().nullable(),
 	rating_count: z.number().min(0),

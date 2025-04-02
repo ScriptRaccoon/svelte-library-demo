@@ -7,10 +7,11 @@ const sql = `
 SELECT
     books.id AS id,
     title,
-    authors.name AS author,
+    authors.name AS author_name,
+    authors.id AS author_id,
     books.description as description,
     published_year,
-    genres.name AS genre,
+    genres.name AS genre_name,
     genre_id,
     COUNT(ratings.rating) AS rating_count,
     COALESCE(AVG(ratings.rating), 0) AS average_rating
