@@ -12,6 +12,9 @@
 			<li>
 				<a href="/genres">Genres</a>
 			</li>
+			<li>
+				<a href="/authors">Authors</a>
+			</li>
 		</ul>
 	</nav>
 </header>
