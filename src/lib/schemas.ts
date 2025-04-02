@@ -38,6 +38,8 @@ export const RatingRequestSchema = z.object({
 
 export type RatingRequest = z.infer<typeof RatingRequestSchema>
 
+export const RatingResponseSchema = z.object({ rating: z.number().min(1).max(5) })
+
 export const BookSchema = z.object({
 	id: z.number(),
 	title: z.string(),
