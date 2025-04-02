@@ -4,19 +4,24 @@ import { db } from '$lib/server/db'
 
 const sql = `
 SELECT
-    books.id as id,
+    books.id AS id,
     title,
-    authors.name as author,
+    authors.name AS author,
     description,
     published_year,
-    genres.name as genre,
-    genre_id
+    genres.name AS genre,
+    genre_id,
+    COUNT(ratings.rating) AS rating_count,
+    COALESCE(AVG(ratings.rating), 0) AS average_rating
 FROM
     books
     INNER JOIN authors ON books.author_id = authors.id
     INNER JOIN genres ON books.genre_id = genres.id
+    LEFT JOIN ratings ON books.id = ratings.book_id
 WHERE
     books.id = :id
+GROUP BY
+    books.id
 `
 
 export const GET: RequestHandler = async (event) => {

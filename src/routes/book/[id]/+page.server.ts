@@ -9,6 +9,8 @@ type Book = {
 	genre: string
 	genre_id: number
 	published_year: number
+	rating_count: number
+	average_rating: number
 }
 
 export const load: PageServerLoad = async (event) => {
