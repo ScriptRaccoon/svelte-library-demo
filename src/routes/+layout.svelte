@@ -11,6 +11,9 @@
 		<li>
 			<a href="/">Books</a>
 		</li>
+		<li>
+			<a href="/genres">Genres</a>
+		</li>
 	</ul>
 </nav>
 
