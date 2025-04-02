@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invalidateAll } from '$app/navigation'
 	import StarRating from 'svelte-star-rating'
 	let { data } = $props()
 	let book = $derived(data.book)
@@ -7,13 +8,17 @@
 
 	let selected_user_rating = $state(data.user_rating)
 	let form_status = $state('')
+	let enable_submission = $state(true)
 
 	async function handle_submit(e: SubmitEvent) {
 		e.preventDefault()
+		if (!enable_submission) return
+		enable_submission = false
 		form_status = ''
 
 		if (selected_user_rating === null) {
 			form_status = 'Please select a rating'
+			enable_submission = true
 			return
 		}
 
@@ -35,11 +40,18 @@
 		})
 
 		form_status = res.ok ? 'Rating submitted!' : 'Error submitting rating'
+
+		if (res.ok) {
+			invalidateAll()
+		} else {
+			enable_submission = true
+		}
 	}
 
 	async function update_user_rating() {
 		if (selected_user_rating === data.user_rating) {
 			form_status = 'No changes made'
+			enable_submission = true
 			return
 		}
 
@@ -53,6 +65,12 @@
 		})
 
 		form_status = res.ok ? 'Rating updated!' : 'Error updating rating'
+
+		if (res.ok) {
+			invalidateAll()
+		} else {
+			enable_submission = true
+		}
 	}
 
 	let submit_button_text = $state(
@@ -101,7 +119,7 @@
 				<option value={i + 1}>{i + 1} &ndash; {rating_texts[i]}</option>
 			{/each}
 		</select>
-		<button class="button" type="submit">
+		<button class="button" type="submit" disabled={!enable_submission}>
 			{submit_button_text}
 		</button>
 	</form>
