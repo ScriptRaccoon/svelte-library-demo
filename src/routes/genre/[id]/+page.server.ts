@@ -3,6 +3,7 @@ import type { PageServerLoad } from './$types'
 import { z } from 'zod'
 
 const GenreSchema = z.object({
+	id: z.number(),
 	name: z.string(),
 	books: z.array(
 		z.object({
