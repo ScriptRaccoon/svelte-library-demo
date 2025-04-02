@@ -37,7 +37,9 @@
 </section>
 
 <section aria-label="book details">
-	<p class="year">{book.published_year}</p>
+	{#if book.published_year}
+		<p class="year">{book.published_year}</p>
+	{/if}
 
 	<p class="author">by {book.author}</p>
 
@@ -47,7 +49,9 @@
 		</a>
 	</div>
 
-	<p class="description">{book.description}</p>
+	{#if book.description}
+		<p class="description">{book.description}</p>
+	{/if}
 </section>
 
 <section>

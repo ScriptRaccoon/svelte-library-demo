@@ -5,10 +5,10 @@ type Book = {
 	id: number
 	title: string
 	author: string
-	description: string
+	description: string | null
 	genre: string
 	genre_id: number
-	published_year: number
+	published_year: number | null
 	rating_count: number
 	average_rating: number
 }

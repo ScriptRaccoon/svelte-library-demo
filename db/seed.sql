@@ -13,8 +13,8 @@ CREATE TABLE
     books (
         id INTEGER PRIMARY KEY,
         title TEXT NOT NULL,
-        author_id INTEGER,
-        genre_id INTEGER,
+        author_id INTEGER NOT NULL,
+        genre_id INTEGER NOT NULL,
         published_year INTEGER,
         description TEXT,
         FOREIGN KEY (author_id) REFERENCES authors (id),
@@ -24,8 +24,8 @@ CREATE TABLE
 CREATE TABLE
     ratings (
         id INTEGER PRIMARY KEY,
-        book_id INTEGER,
-        rating INTEGER CHECK (
+        book_id INTEGER NOT NULL,
+        rating INTEGER NOT NULL CHECK (
             rating >= 1
             AND rating <= 5
         ),
