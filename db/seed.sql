@@ -21,6 +21,18 @@ CREATE TABLE
         FOREIGN KEY (genre_id) REFERENCES genres (id)
     );
 
+CREATE TABLE
+    ratings (
+        id INTEGER PRIMARY KEY,
+        book_id INTEGER,
+        rating INTEGER CHECK (
+            rating >= 1
+            AND rating <= 5
+        ),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (book_id) REFERENCES books (id) ON DELETE CASCADE
+    );
+
 -- Insert genres
 INSERT INTO
     genres (name)
@@ -291,3 +303,58 @@ VALUES
         1320,
         'An epic poem describing a journey through Hell, Purgatory, and Paradise.'
     );
+
+-- Insert ratings
+INSERT INTO
+    ratings (book_id, rating)
+VALUES
+    (1, 5),
+    (1, 4),
+    (1, 5),
+    (1, 3),
+    (1, 4),
+    (2, 4),
+    (2, 3),
+    (2, 5),
+    (2, 4),
+    (2, 5),
+    (3, 5),
+    (3, 5),
+    (3, 4),
+    (3, 5),
+    (3, 5),
+    (4, 5),
+    (4, 4),
+    (4, 3),
+    (4, 2),
+    (4, 4),
+    (5, 4),
+    (5, 3),
+    (5, 5),
+    (5, 4),
+    (5, 4),
+    (6, 5),
+    (6, 5),
+    (6, 4),
+    (6, 4),
+    (6, 5),
+    (7, 5),
+    (7, 4),
+    (7, 5),
+    (7, 3),
+    (7, 4),
+    (8, 4),
+    (8, 3),
+    (8, 5),
+    (8, 4),
+    (8, 4),
+    (9, 5),
+    (9, 5),
+    (9, 4),
+    (9, 3),
+    (9, 4),
+    (10, 4),
+    (10, 4),
+    (10, 5),
+    (10, 3),
+    (10, 5);
