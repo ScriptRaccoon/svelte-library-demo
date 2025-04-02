@@ -60,3 +60,32 @@ export const GET: RequestHandler = async (event) => {
 		return error(500, 'Cannot fetch rating')
 	}
 }
+
+const patch_sql = `
+UPDATE ratings
+	SET rating = :rating
+WHERE
+	user_id = :user_id
+	AND book_id = :book_id
+`
+
+export const PATCH: RequestHandler = async (event) => {
+	try {
+		const user_id = event.locals.userID
+		if (!user_id) {
+			return error(401, 'Unauthorized')
+		}
+
+		const body = await event.request.json()
+
+		const { book_id, rating } = RatingRequestSchema.parse(body)
+
+		const res = await db.execute(patch_sql, { user_id, book_id, rating })
+		console.log(res) // TEMP
+
+		return json('ok')
+	} catch (err) {
+		console.error(err)
+		return error(500, 'Cannot update rating')
+	}
+}

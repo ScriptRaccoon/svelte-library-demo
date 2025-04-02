@@ -2,17 +2,28 @@
 	import StarRating from 'svelte-star-rating'
 	let { data } = $props()
 	let book = $derived(data.book)
-	let user_rating = $state(data.user_rating)
+	let saved_user_rating = $derived(data.user_rating)
 
 	const rating_texts = ['Terrible', 'Bad', 'Okay', 'Good', 'Excellent']
 
-	let selected_user_rating = $state(data.user_rating ?? 4)
+	let selected_user_rating = $state(data.user_rating ?? null)
 	let form_status = $state('')
 
 	async function handle_submit(e: SubmitEvent) {
 		e.preventDefault()
-		if (user_rating !== null) return
-		form_status = ''
+		if (selected_user_rating === null) {
+			form_status = 'Please select a rating'
+			return
+		}
+
+		if (saved_user_rating === null) {
+			await submit_user_rating()
+		} else {
+			await update_user_rating()
+		}
+	}
+
+	async function submit_user_rating() {
 		const res = await fetch('/api/rating', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -25,9 +36,35 @@
 		form_status = res.ok ? 'Rating submitted!' : 'Error submitting rating'
 
 		if (res.ok) {
-			user_rating = selected_user_rating
+			saved_user_rating = selected_user_rating
 		}
 	}
+
+	async function update_user_rating() {
+		if (selected_user_rating === saved_user_rating) {
+			form_status = 'No changes made'
+			return
+		}
+
+		const res = await fetch('/api/rating', {
+			method: 'PATCH',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				book_id: book.id,
+				rating: selected_user_rating,
+			}),
+		})
+
+		form_status = res.ok ? 'Rating updated!' : 'Error updating rating'
+
+		if (res.ok) {
+			saved_user_rating = selected_user_rating
+		}
+	}
+
+	let submit_button_text = $state(
+		data.user_rating === null ? 'Submit rating' : 'Update rating',
+	)
 </script>
 
 <svelte:head>
@@ -66,28 +103,19 @@
 	<h3>Rate the book</h3>
 
 	<form class="rating-form" onsubmit={handle_submit}>
-		<select
-			bind:value={selected_user_rating}
-			class="select"
-			required
-			disabled={user_rating !== null}
-		>
+		<select bind:value={selected_user_rating} class="select">
 			{#each { length: 5 } as _, i}
 				<option value={i + 1}>{i + 1} &ndash; {rating_texts[i]}</option>
 			{/each}
 		</select>
-		<button class="button" type="submit" disabled={user_rating !== null}
-			>Submit rating</button
-		>
+		<button class="button" type="submit">
+			{submit_button_text}
+		</button>
 	</form>
 
 	<div class="form_status" aria-live="polite">
 		{form_status}
 	</div>
-
-	{#if user_rating !== null}
-		<p>You have rated the book with {user_rating}.</p>
-	{/if}
 </section>
 
 <style>
