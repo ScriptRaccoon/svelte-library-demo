@@ -3,6 +3,10 @@
 	let books = $derived(data.books)
 </script>
 
+<svelte:head>
+	<title>Books</title>
+</svelte:head>
+
 <h1>Books</h1>
 
 <ul>
