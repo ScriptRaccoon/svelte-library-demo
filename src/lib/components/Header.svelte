@@ -1,19 +1,24 @@
+<script lang="ts">
+	import { page } from '$app/state'
+	let path = $derived(page.url.pathname)
+</script>
+
 <header>
 	<h1>Svelte Library Demo</h1>
 
 	<nav>
 		<ul>
 			<li>
-				<a href="/">Home</a>
+				<a class:current={path === '/'} href="/">Home</a>
 			</li>
 			<li>
-				<a href="/books">Books</a>
+				<a class:current={path.includes('book')} href="/books">Books</a>
 			</li>
 			<li>
-				<a href="/genres">Genres</a>
+				<a class:current={path.includes('genre')} href="/genres">Genres</a>
 			</li>
 			<li>
-				<a href="/authors">Authors</a>
+				<a class:current={path.includes('author')} href="/authors">Authors</a>
 			</li>
 		</ul>
 	</nav>
@@ -35,5 +40,9 @@
 		justify-content: center;
 		list-style: none;
 		gap: 1rem;
+	}
+
+	a.current {
+		color: var(--highlight-color);
 	}
 </style>
