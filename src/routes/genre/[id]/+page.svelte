@@ -1,6 +1,7 @@
 <script lang="ts">
 	let { data } = $props()
 	let genre = $derived(data.genre)
+	let books = $derived(data.books)
 </script>
 
 <svelte:head>
@@ -11,9 +12,9 @@
 
 <p>{genre.description}</p>
 
-{#if genre.books.length}
+{#if books.length}
 	<ul class="list">
-		{#each genre.books as book (book.id)}
+		{#each books as book (book.id)}
 			<li>
 				<a href="/book/{book.id}">
 					{book.title}

@@ -1,16 +1,25 @@
 import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
-import type { Genre } from '$lib/schemas'
+import type { BookList, Genre } from '$lib/schemas'
 
 export const load: PageServerLoad = async (event) => {
 	const id = event.params.id
-	const res = await event.fetch(`/api/genre?id=${id}`)
 
-	if (!res.ok) {
-		return error(res.status, 'Failed to fetch genre')
+	const [res_genre, res_books] = await Promise.all([
+		event.fetch(`/api/genre?id=${id}`),
+		event.fetch(`/api/books?genre_id=${id}`),
+	])
+
+	if (!res_genre.ok) {
+		return error(res_genre.status, 'Failed to fetch genre')
 	}
 
-	const genre: Genre = await res.json()
+	if (!res_books.ok) {
+		return error(res_books.status, 'Failed to fetch books')
+	}
 
-	return { genre }
+	const genre: Genre = await res_genre.json()
+	const books: BookList = await res_books.json()
+
+	return { genre, books }
 }
