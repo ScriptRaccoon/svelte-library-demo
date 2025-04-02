@@ -13,6 +13,10 @@
 
 <p>{book.author}</p>
 
-<p>{book.genre}</p>
+<p>
+	<a href="/genre/{book.genre_id}">
+		{book.genre}
+	</a>
+</p>
 
 <p>{book.description}</p>

@@ -12,7 +12,7 @@
 <ul>
 	{#each genres as genre (genre.id)}
 		<li>
-			<a href="/genres/{genre.id}">
+			<a href="/genre/{genre.id}">
 				{genre.name}
 			</a>
 		</li>
