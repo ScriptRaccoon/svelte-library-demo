@@ -50,11 +50,11 @@ export const GET: RequestHandler = async (event) => {
 	try {
 		const { rows } = await db.execute(get_sql, { user_id, book_id })
 		if (rows.length === 0) {
-			return json({ rating: null })
+			return json(null)
 		}
 
 		const { rating } = RatingResponseSchema.parse(rows[0])
-		return json({ rating })
+		return json(rating)
 	} catch (err) {
 		console.error(err)
 		return error(500, 'Cannot fetch rating')

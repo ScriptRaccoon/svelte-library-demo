@@ -17,7 +17,7 @@ export const load: PageServerLoad = async (event) => {
 		return error(res_rating.status, 'Failed to fetch rating')
 	}
 
-	const rating_data: { rating: number } = await res_rating.json()
+	const user_rating: number | null = await res_rating.json()
 
-	return { book, user_rating: rating_data.rating }
+	return { book, user_rating }
 }
