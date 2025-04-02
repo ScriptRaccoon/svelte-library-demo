@@ -2,9 +2,10 @@ import { error, json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 import { db } from '$lib/server/db'
 
-async function get_genre_name(id: string) {
-	const { rows } = await db.execute('SELECT name FROM genres WHERE id = :id', { id })
-	return rows[0].name
+async function get_genre_name(id: string): Promise<string> {
+	const sql = 'SELECT name FROM genres WHERE id = :id'
+	const { rows } = await db.execute(sql, { id })
+	return String(rows[0].name)
 }
 
 const sql = `
@@ -23,7 +24,12 @@ export const GET: RequestHandler = async (event) => {
 	if (!id) {
 		return error(400, 'Missing id')
 	}
-	const name = await get_genre_name(id)
-	const { rows: books } = await db.execute(sql, { id })
-	return json({ name, books })
+	try {
+		const name = await get_genre_name(id)
+		const { rows: books } = await db.execute(sql, { id })
+		return json({ name, books })
+	} catch (err) {
+		console.error(err)
+		return error(500, 'Cannot fetch genre details')
+	}
 }

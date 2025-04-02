@@ -29,7 +29,12 @@ export const GET: RequestHandler = async (event) => {
 	if (!id) {
 		return error(400, 'Missing id')
 	}
-	const { rows } = await db.execute(sql, { id })
-	const book = rows[0]
-	return json(book)
+	try {
+		const { rows } = await db.execute(sql, { id })
+		const book = rows[0]
+		return json(book)
+	} catch (err) {
+		console.error(err)
+		return error(500, 'Cannot fetch book')
+	}
 }
