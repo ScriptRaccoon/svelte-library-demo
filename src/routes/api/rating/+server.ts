@@ -12,7 +12,7 @@ VALUES
 
 export const POST: RequestHandler = async (event) => {
 	try {
-		const user_id = event.locals.userID
+		const user_id = event.locals.user_id
 		if (!user_id) {
 			return error(401, 'Unauthorized')
 		}
@@ -37,7 +37,7 @@ WHERE
 `
 
 export const GET: RequestHandler = async (event) => {
-	const user_id = event.locals.userID
+	const user_id = event.locals.user_id
 	if (!user_id) {
 		return error(401, 'Unauthorized')
 	}
@@ -71,7 +71,7 @@ WHERE
 
 export const PATCH: RequestHandler = async (event) => {
 	try {
-		const user_id = event.locals.userID
+		const user_id = event.locals.user_id
 		if (!user_id) {
 			return error(401, 'Unauthorized')
 		}

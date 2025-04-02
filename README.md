@@ -1,3 +1,3 @@
 # Svelte Library Demo
 
-This is a demo how to work with SQLite and SvelteKit.
+This is a demo on how to work with SQLite and SvelteKit.
