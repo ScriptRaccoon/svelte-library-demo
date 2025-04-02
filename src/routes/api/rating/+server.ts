@@ -80,10 +80,9 @@ export const PATCH: RequestHandler = async (event) => {
 
 		const { book_id, rating } = RatingRequestSchema.parse(body)
 
-		const res = await db.execute(patch_sql, { user_id, book_id, rating })
-		console.log(res) // TEMP
+		await db.execute(patch_sql, { user_id, book_id, rating })
 
-		return json('ok')
+		return json({ message: 'Rating updated' })
 	} catch (err) {
 		console.error(err)
 		return error(500, 'Cannot update rating')
