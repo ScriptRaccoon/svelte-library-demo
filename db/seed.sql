@@ -37,9 +37,21 @@ CREATE TABLE
             AND rating <= 5
         ),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP,
         FOREIGN KEY (book_id) REFERENCES books (id) ON DELETE CASCADE,
         UNIQUE (user_id, book_id)
     );
+
+-- Create triggers
+CREATE TRIGGER update_ratings_timestamp AFTER
+UPDATE ON ratings FOR EACH ROW BEGIN
+UPDATE ratings
+SET
+    updated_at = CURRENT_TIMESTAMP
+WHERE
+    id = OLD.id;
+
+END;
 
 -- Insert genres
 INSERT INTO
