@@ -1,24 +1,33 @@
 import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
+import { z } from 'zod'
 
-type Book = {
-	id: number
-	title: string
-	author: string
-	description: string | null
-	genre: string
-	genre_id: number
-	published_year: number | null
-	rating_count: number
-	average_rating: number
-}
+const BookSchema = z.object({
+	id: z.number(),
+	title: z.string(),
+	author: z.string(),
+	description: z.string().nullable(),
+	genre: z.string(),
+	genre_id: z.number(),
+	published_year: z.number().nullable(),
+	rating_count: z.number().min(0),
+	average_rating: z.number().min(0).max(5),
+})
 
 export const load: PageServerLoad = async (event) => {
 	const id = event.params.id
 	const res = await event.fetch(`/api/book?id=${id}`)
+
 	if (!res.ok) {
 		return error(res.status, 'Failed to fetch book')
 	}
-	const book: Book = await res.json()
-	return { book }
+
+	const book = await res.json()
+
+	const { success, data } = BookSchema.safeParse(book)
+	if (!success) {
+		return error(500, 'Invalid book data')
+	}
+
+	return { book: data }
 }
