@@ -18,9 +18,10 @@ export const GenreListSchema = z.array(
 
 export type GenreList = z.infer<typeof GenreListSchema>
 
-export const GenreSchema = z.object({
+export const GenreBooksSchema = z.object({
 	id: z.number(),
 	name: z.string(),
+	description: z.string(),
 	books: z.array(
 		z.object({
 			id: z.number(),
@@ -29,7 +30,7 @@ export const GenreSchema = z.object({
 	),
 })
 
-export type Genre = z.infer<typeof GenreSchema>
+export type Genre = z.infer<typeof GenreBooksSchema>
 
 export const RatingRequestSchema = z.object({
 	book_id: z.number(),

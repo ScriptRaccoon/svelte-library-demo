@@ -9,7 +9,11 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    genres (id INTEGER PRIMARY KEY, name TEXT UNIQUE NOT NULL);
+    genres (
+        id INTEGER PRIMARY KEY,
+        name TEXT UNIQUE NOT NULL,
+        description TEXT NOT NULL
+    );
 
 CREATE TABLE
     books (
@@ -39,18 +43,48 @@ CREATE TABLE
 
 -- Insert genres
 INSERT INTO
-    genres (name)
+    genres (name, description)
 VALUES
-    ('Fiction'),
-    ('Fantasy'),
-    ('Science Fiction'),
-    ('Mystery'),
-    ('Historical'),
-    ('Horror'),
-    ('Romance'),
-    ('Philosophy'),
-    ('Biography'),
-    ('Poetry');
+    (
+        'Fiction',
+        'Narrative prose that is imaginary or invented.'
+    ),
+    (
+        'Fantasy',
+        'Fiction involving magical or supernatural elements.'
+    ),
+    (
+        'Science Fiction',
+        'Fiction exploring futuristic and scientific concepts.'
+    ),
+    (
+        'Mystery',
+        'Fiction centered around solving a crime or uncovering secrets.'
+    ),
+    (
+        'Historical',
+        'Fiction set in a past historical era with accurate details.'
+    ),
+    (
+        'Horror',
+        'Fiction designed to frighten, scare, or unsettle readers.'
+    ),
+    (
+        'Romance',
+        'Fiction focusing on romantic relationships and emotions.'
+    ),
+    (
+        'Philosophy',
+        'Literary works discussing fundamental human questions.'
+    ),
+    (
+        'Biography',
+        'A detailed account of a person’s life written by someone else.'
+    ),
+    (
+        'Poetry',
+        'Literary works written in verse, emphasizing expression and rhythm.'
+    );
 
 -- Insert authors
 INSERT INTO

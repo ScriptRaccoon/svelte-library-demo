@@ -9,6 +9,8 @@
 
 <h2>{genre.name}</h2>
 
+<p>{genre.description}</p>
+
 <ul class="list">
 	{#each genre.books as book (book.id)}
 		<li>

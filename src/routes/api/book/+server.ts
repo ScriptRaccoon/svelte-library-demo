@@ -8,7 +8,7 @@ SELECT
     books.id AS id,
     title,
     authors.name AS author,
-    description,
+    books.description as description,
     published_year,
     genres.name AS genre,
     genre_id,
