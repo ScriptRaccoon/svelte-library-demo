@@ -1,6 +1,7 @@
 import type { RequestHandler } from './$types'
 import { error, json } from '@sveltejs/kit'
 import { db } from '$lib/server/db'
+import { BookSchema } from '$lib/schemas'
 
 const sql = `
 SELECT
@@ -31,7 +32,7 @@ export const GET: RequestHandler = async (event) => {
 	}
 	try {
 		const { rows } = await db.execute(sql, { id })
-		const book = rows[0]
+		const book = BookSchema.parse(rows[0])
 		return json(book)
 	} catch (err) {
 		console.error(err)
