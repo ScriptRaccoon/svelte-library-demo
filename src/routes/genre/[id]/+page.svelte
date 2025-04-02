@@ -11,12 +11,16 @@
 
 <p>{genre.description}</p>
 
-<ul class="list">
-	{#each genre.books as book (book.id)}
-		<li>
-			<a href="/book/{book.id}">
-				{book.title}
-			</a>
-		</li>
-	{/each}
-</ul>
+{#if genre.books.length}
+	<ul class="list">
+		{#each genre.books as book (book.id)}
+			<li>
+				<a href="/book/{book.id}">
+					{book.title}
+				</a>
+			</li>
+		{/each}
+	</ul>
+{:else}
+	<p>No books are available within that genre</p>
+{/if}
