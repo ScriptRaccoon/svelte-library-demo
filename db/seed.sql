@@ -1,5 +1,14 @@
 PRAGMA foreign_keys = ON;
 
+-- Drop tables if they exist
+DROP TABLE IF EXISTS ratings;
+
+DROP TABLE IF EXISTS books;
+
+DROP TABLE IF EXISTS genres;
+
+DROP TABLE IF EXISTS authors;
+
 -- Create tables
 CREATE TABLE
     authors (
