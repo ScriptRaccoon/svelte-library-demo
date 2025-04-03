@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types'
 import { type GenreList } from '$lib/schemas'
 
 export const load: PageServerLoad = async (event) => {
-	const res = await event.fetch('/api/genres')
+	const res = await event.fetch('/api/v1/genres')
 
 	if (!res.ok) {
 		return error(res.status, 'Failed to fetch genres')

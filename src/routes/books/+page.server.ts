@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types'
 import { type BookList } from '$lib/schemas'
 
 export const load: PageServerLoad = async (event) => {
-	const res = await event.fetch('/api/books/all')
+	const res = await event.fetch('/api/v1/books/all')
 
 	if (!res.ok) {
 		return error(res.status, 'Failed to fetch books')

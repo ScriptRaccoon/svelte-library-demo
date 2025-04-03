@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types'
 import { type AuthorList } from '$lib/schemas'
 
 export const load: PageServerLoad = async (event) => {
-	const res = await event.fetch('/api/authors')
+	const res = await event.fetch('/api/v1/authors')
 
 	if (!res.ok) {
 		return error(res.status, 'Failed to fetch authors')

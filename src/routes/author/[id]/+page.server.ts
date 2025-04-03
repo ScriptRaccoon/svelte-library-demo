@@ -6,8 +6,8 @@ export const load: PageServerLoad = async (event) => {
 	const id = event.params.id
 
 	const [res_author, res_books] = await Promise.all([
-		event.fetch(`/api/author?id=${id}`),
-		event.fetch(`/api/books?author_id=${id}`),
+		event.fetch(`/api/v1/author?id=${id}`),
+		event.fetch(`/api/v1/books?author_id=${id}`),
 	])
 
 	if (!res_author.ok) {

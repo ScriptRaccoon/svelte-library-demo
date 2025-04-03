@@ -30,7 +30,7 @@
 	}
 
 	async function submit_user_rating() {
-		const res = await fetch('/api/rating', {
+		const res = await fetch('/api/v1/rating', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
@@ -55,7 +55,7 @@
 			return
 		}
 
-		const res = await fetch('/api/rating', {
+		const res = await fetch('/api/v1/rating', {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
