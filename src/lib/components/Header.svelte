@@ -20,6 +20,9 @@
 			<li>
 				<a class:current={path.includes('author')} href="/authors">Authors</a>
 			</li>
+			<li>
+				<a class:current={path.includes('search')} href="/search">Search</a>
+			</li>
 		</ul>
 	</nav>
 </header>
