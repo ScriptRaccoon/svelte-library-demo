@@ -1,18 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
+	import { navigating } from '$app/state'
 
 	let { data } = $props()
 	let books = $derived(data.books)
-
-	let submitted = $state(false)
-
-	function handle_submit(e: SubmitEvent) {
-		if (submitted) {
-			e.preventDefault()
-			return
-		}
-		submitted = true
-	}
 </script>
 
 <svelte:head>
@@ -21,7 +12,7 @@
 
 <h2>Search for Books</h2>
 
-<form action="/search" method="GET" use:enhance onsubmit={handle_submit}>
+<form action="/search" method="GET" use:enhance>
 	<label for="query">Query</label>
 	<input
 		type="text"
@@ -32,8 +23,8 @@
 		required
 		value={data.query ?? ''}
 	/>
-	<button type="submit" class="button" disabled={submitted}>
-		{#if submitted}
+	<button type="submit" class="button" disabled={!!navigating.from}>
+		{#if navigating.from}
 			Searching...
 		{:else}
 			Search
