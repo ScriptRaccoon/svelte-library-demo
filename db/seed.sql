@@ -147,550 +147,550 @@ VALUES
 INSERT INTO
     books (
         title,
+        description,
         author_id,
         genre_id,
-        published_year,
-        description
+        published_year
     )
 VALUES
     (
         'Pride and Prejudice',
+        'A romantic novel that explores themes of love, class, and societal expectations.',
         1,
         7,
-        1813,
-        'A romantic novel that explores themes of love, class, and societal expectations.'
+        1813
     ),
     (
         'Adventures of Huckleberry Finn',
+        'A coming-of-age novel about the adventures of a young boy along the Mississippi River.',
         2,
         1,
-        1884,
-        'A coming-of-age novel about the adventures of a young boy along the Mississippi River.'
+        1884
     ),
     (
         'Harry Potter and the Sorcerer''s Stone',
+        'The first book in the Harry Potter series, where a young wizard discovers his magical heritage.',
         3,
         2,
-        1997,
-        'The first book in the Harry Potter series, where a young wizard discovers his magical heritage.'
+        1997
     ),
     (
         '1984',
+        'A dystopian novel exploring totalitarianism, surveillance, and freedom.',
         4,
         3,
-        1949,
-        'A dystopian novel exploring totalitarianism, surveillance, and freedom.'
+        1949
     ),
     (
         'Murder on the Orient Express',
+        'A detective novel featuring Hercule Poirot solving a murder on a train.',
         5,
         4,
-        1934,
-        'A detective novel featuring Hercule Poirot solving a murder on a train.'
+        1934
     ),
     (
         'Foundation',
+        'A sci-fi classic about the fall and rise of civilizations, based on mathematical predictions.',
         6,
         3,
-        1951,
-        'A sci-fi classic about the fall and rise of civilizations, based on mathematical predictions.'
+        1951
     ),
     (
         'The Shining',
+        'A psychological horror novel set in an isolated hotel haunted by supernatural forces.',
         7,
         6,
-        1977,
-        'A psychological horror novel set in an isolated hotel haunted by supernatural forces.'
+        1977
     ),
     (
         'The Old Man and the Sea',
+        'A short novel about an aging fisherman and his battle with a giant marlin.',
         8,
         1,
-        1952,
-        'A short novel about an aging fisherman and his battle with a giant marlin.'
+        1952
     ),
     (
         'War and Peace',
+        'A historical epic set during the Napoleonic Wars, exploring the lives of Russian aristocracy.',
         9,
         5,
-        1869,
-        'A historical epic set during the Napoleonic Wars, exploring the lives of Russian aristocracy.'
+        1869
     ),
     (
         'A Tale of Two Cities',
+        'A novel set during the French Revolution, contrasting the cities of London and Paris.',
         10,
         5,
-        1859,
-        'A novel set during the French Revolution, contrasting the cities of London and Paris.'
+        1859
     ),
     (
         'The Time Machine',
+        'A sci-fi story about time travel and humanity''s future evolution.',
         11,
         3,
-        1895,
-        'A sci-fi story about time travel and humanity''s future evolution.'
+        1895
     ),
     (
         'The Great Gatsby',
+        'A critique of the American Dream, centering on a mysterious millionaire and his lost love.',
         12,
         1,
-        1925,
-        'A critique of the American Dream, centering on a mysterious millionaire and his lost love.'
+        1925
     ),
     (
         'The Tell-Tale Heart',
+        'A short horror story about guilt and paranoia after committing murder.',
         13,
         6,
-        1843,
-        'A short horror story about guilt and paranoia after committing murder.'
+        1843
     ),
     (
         'Sherlock Holmes: A Study in Scarlet',
+        'The first novel featuring the legendary detective Sherlock Holmes.',
         14,
         4,
-        1887,
-        'The first novel featuring the legendary detective Sherlock Holmes.'
+        1887
     ),
     (
         'The Iliad',
+        'An ancient epic poem about the Trojan War and its heroes.',
         15,
         5,
-        -750,
-        'An ancient epic poem about the Trojan War and its heroes.'
+        -750
     ),
     (
         'Frankenstein',
+        'A gothic novel exploring the consequences of playing god and creating life.',
         16,
         6,
-        1818,
-        'A gothic novel exploring the consequences of playing god and creating life.'
+        1818
     ),
     (
         'The Republic',
+        'A philosophical dialogue by Plato discussing justice and the ideal society.',
         17,
         8,
-        -380,
-        'A philosophical dialogue by Plato discussing justice and the ideal society.'
+        -380
     ),
     (
         'Metaphysics',
+        'A foundational work in philosophy exploring the nature of reality and existence.',
         18,
         8,
-        -350,
-        'A foundational work in philosophy exploring the nature of reality and existence.'
+        -350
     ),
     (
         'Collected Poems',
+        'A compilation of Emily Dickinson''s poetry exploring themes of nature and death.',
         19,
         10,
-        1890,
-        'A compilation of Emily Dickinson''s poetry exploring themes of nature and death.'
+        1890
     ),
     (
         'The Lord of the Rings',
+        'A fantasy epic following the journey to destroy a powerful ring.',
         20,
         2,
-        1954,
-        'A fantasy epic following the journey to destroy a powerful ring.'
+        1954
     ),
     (
         'The Call of Cthulhu',
+        'A horror short story introducing the mythos of cosmic horror.',
         21,
         6,
-        1928,
-        'A horror short story introducing the mythos of cosmic horror.'
+        1928
     ),
     (
         'The Picture of Dorian Gray',
+        'A novel about a man whose portrait ages while he remains young and corrupted.',
         22,
         1,
-        1890,
-        'A novel about a man whose portrait ages while he remains young and corrupted.'
+        1890
     ),
     (
         'Fahrenheit 451',
+        'A dystopian novel about a future society where books are banned and burned.',
         23,
         3,
-        1953,
-        'A dystopian novel about a future society where books are banned and burned.'
+        1953
     ),
     (
         'The Hitchhiker''s Guide to the Galaxy',
+        'A comedic sci-fi adventure through space and absurdity.',
         24,
         3,
-        1979,
-        'A comedic sci-fi adventure through space and absurdity.'
+        1979
     ),
     (
         'Les Misérables',
+        'A historical novel about redemption, justice, and the struggles of post-revolutionary France.',
         25,
         5,
-        1862,
-        'A historical novel about redemption, justice, and the struggles of post-revolutionary France.'
+        1862
     ),
     (
         'To Kill a Mockingbird',
+        'A novel exploring racial injustice and moral growth in the American South.',
         26,
         1,
-        1960,
-        'A novel exploring racial injustice and moral growth in the American South.'
+        1960
     ),
     (
         'The Trial',
+        'A surreal novel about a man caught in a nightmarish bureaucratic system.',
         27,
         1,
-        1925,
-        'A surreal novel about a man caught in a nightmarish bureaucratic system.'
+        1925
     ),
     (
         'Dracula',
+        'A gothic horror novel introducing the legendary vampire Count Dracula.',
         28,
         6,
-        1897,
-        'A gothic horror novel introducing the legendary vampire Count Dracula.'
+        1897
     ),
     (
         'One Hundred Years of Solitude',
+        'A magical realist novel chronicling multiple generations of the Buendía family.',
         29,
         1,
-        1967,
-        'A magical realist novel chronicling multiple generations of the Buendía family.'
+        1967
     ),
     (
         'The Divine Comedy',
+        'An epic poem describing a journey through Hell, Purgatory, and Paradise.',
         30,
         8,
-        1320,
-        'An epic poem describing a journey through Hell, Purgatory, and Paradise.'
+        1320
     ),
     (
         'The Odyssey',
+        'An epic journey home after the Trojan War.',
         15,
         5,
-        -700,
-        'An epic journey home after the Trojan War.'
+        -700
     ),
     (
         'Brave New World',
+        'A dystopian vision of a future society.',
         4,
         3,
-        1932,
-        'A dystopian vision of a future society.'
+        1932
     ),
     (
         'Crime and Punishment',
+        'A psychological novel about guilt and redemption.',
         9,
         5,
-        1866,
-        'A psychological novel about guilt and redemption.'
+        1866
     ),
     (
         'Dune',
+        'A sci-fi saga about power and destiny on a desert planet.',
         6,
         3,
-        1965,
-        'A sci-fi saga about power and destiny on a desert planet.'
+        1965
     ),
     (
         'The Catcher in the Rye',
+        'A coming-of-age novel following Holden Caulfield.',
         12,
         1,
-        1951,
-        'A coming-of-age novel following Holden Caulfield.'
+        1951
     ),
     (
         'Jane Eyre',
+        'A novel about love, morality, and social criticism.',
         1,
         7,
-        1847,
-        'A novel about love, morality, and social criticism.'
+        1847
     ),
     (
         'The War of the Worlds',
+        'An alien invasion sci-fi novel.',
         11,
         3,
-        1898,
-        'An alien invasion sci-fi novel.'
+        1898
     ),
     (
         'The Hound of the Baskervilles',
+        'A Sherlock Holmes mystery involving a ghostly hound.',
         14,
         4,
-        1902,
-        'A Sherlock Holmes mystery involving a ghostly hound.'
+        1902
     ),
     (
         'The Road',
+        'A post-apocalyptic survival novel.',
         7,
         6,
-        2006,
-        'A post-apocalyptic survival novel.'
+        2006
     ),
     (
         'The Bell Jar',
+        'A semi-autobiographical novel about mental health.',
         19,
         1,
-        1963,
-        'A semi-autobiographical novel about mental health.'
+        1963
     ),
     (
         'Meditations',
+        'Philosophical reflections by a Roman Emperor.',
         18,
         8,
-        180,
-        'Philosophical reflections by a Roman Emperor.'
+        180
     ),
     (
         'Inferno',
+        'The first part of The Divine Comedy.',
         30,
         8,
-        1314,
-        'The first part of The Divine Comedy.'
+        1314
     ),
     (
         'Persuasion',
+        'A romantic novel about second chances.',
         1,
         7,
-        1817,
-        'A romantic novel about second chances.'
+        1817
     ),
     (
         'The Sun Also Rises',
+        'A novel about the Lost Generation after WWI.',
         8,
         1,
-        1926,
-        'A novel about the Lost Generation after WWI.'
+        1926
     ),
     (
         'The Alchemist',
+        'A novel about destiny and self-discovery.',
         29,
         1,
-        1988,
-        'A novel about destiny and self-discovery.'
+        1988
     ),
     (
         'The Brothers Karamazov',
+        'A novel exploring faith, doubt, and morality.',
         9,
         5,
-        1880,
-        'A novel exploring faith, doubt, and morality.'
+        1880
     ),
     (
         'The Metamorphosis',
+        'A surreal story about a man turning into an insect.',
         27,
         1,
-        1915,
-        'A surreal story about a man turning into an insect.'
+        1915
     ),
     (
         'Dr. Jekyll and Mr. Hyde',
+        'A novella about dual personality and repression.',
         28,
         6,
-        1886,
-        'A novella about dual personality and repression.'
+        1886
     ),
     (
         'The Prince',
+        'A political treatise on power and leadership.',
         17,
         8,
-        1532,
-        'A political treatise on power and leadership.'
+        1532
     ),
     (
         'The Art of War',
+        'An ancient Chinese military strategy guide.',
         18,
         8,
-        -500,
-        'An ancient Chinese military strategy guide.'
+        -500
     ),
     (
         'Slaughterhouse-Five',
+        'A novel about WWII, time travel, and free will.',
         23,
         3,
-        1969,
-        'A novel about WWII, time travel, and free will.'
+        1969
     ),
     (
         'A Brief History of Time',
+        'A popular science book on cosmology.',
         31,
         9,
-        1988,
-        'A popular science book on cosmology.'
+        1988
     ),
     (
         'I, Robot',
+        'A collection of sci-fi stories about AI and robotics.',
         6,
         3,
-        1950,
-        'A collection of sci-fi stories about AI and robotics.'
+        1950
     ),
     (
         'Anna Karenina',
+        'A tragic love story set in Russian high society.',
         9,
         5,
-        1877,
-        'A tragic love story set in Russian high society.'
+        1877
     ),
     (
         'Wuthering Heights',
+        'A gothic romance about obsession and revenge.',
         1,
         7,
-        1847,
-        'A gothic romance about obsession and revenge.'
+        1847
     ),
     (
         'Great Expectations',
+        'A novel about personal growth and ambition.',
         10,
         5,
-        1861,
-        'A novel about personal growth and ambition.'
+        1861
     ),
     (
         'The Grapes of Wrath',
+        'A novel about the Great Depression and migration.',
         8,
         1,
-        1939,
-        'A novel about the Great Depression and migration.'
+        1939
     ),
     (
         'The Three Musketeers',
+        'A swashbuckling adventure about honor and loyalty.',
         25,
         5,
-        1844,
-        'A swashbuckling adventure about honor and loyalty.'
+        1844
     ),
     (
         'Siddhartha',
+        'A novel about spiritual enlightenment.',
         17,
         8,
-        1922,
-        'A novel about spiritual enlightenment.'
+        1922
     ),
     (
         'Macbeth',
+        'A Shakespearean tragedy about ambition and fate.',
         10,
         10,
-        1606,
-        'A Shakespearean tragedy about ambition and fate.'
+        1606
     ),
     (
         'The Canterbury Tales',
+        'A collection of stories from medieval England.',
         15,
         10,
-        1400,
-        'A collection of stories from medieval England.'
+        1400
     ),
     (
         'The Name of the Wind',
+        'A fantasy novel about a gifted young man.',
         20,
         2,
-        2007,
-        'A fantasy novel about a gifted young man.'
+        2007
     ),
     (
         'The House of the Spirits',
+        'A family saga with magical realism.',
         29,
         1,
-        1982,
-        'A family saga with magical realism.'
+        1982
     ),
     (
         'Atlas Shrugged',
+        'A novel about individualism and capitalism.',
         17,
         1,
-        1957,
-        'A novel about individualism and capitalism.'
+        1957
     ),
     (
         'Moby-Dick',
+        'A novel about obsession and revenge on the high seas.',
         8,
         5,
-        1851,
-        'A novel about obsession and revenge on the high seas.'
+        1851
     ),
     (
         'The Handmaid''s Tale',
+        'A dystopian novel about totalitarian rule and women''s rights.',
         23,
         3,
-        1985,
-        'A dystopian novel about totalitarian rule and women''s rights.'
+        1985
     ),
     (
         'The Stranger',
+        'A novel exploring existentialism and absurdity.',
         27,
         1,
-        1942,
-        'A novel exploring existentialism and absurdity.'
+        1942
     ),
     (
         'Bleak House',
+        'A critique of the British legal system.',
         10,
         5,
-        1853,
-        'A critique of the British legal system.'
+        1853
     ),
     (
         'The Secret Garden',
+        'A children''s novel about healing and nature.',
         19,
         7,
-        1911,
-        'A children''s novel about healing and nature.'
+        1911
     ),
     (
         'The Little Prince',
+        'A philosophical novella about childhood and imagination.',
         23,
         1,
-        1943,
-        'A philosophical novella about childhood and imagination.'
+        1943
     ),
     (
         'Treasure Island',
+        'A classic adventure novel about pirates and treasure.',
         25,
         5,
-        1883,
-        'A classic adventure novel about pirates and treasure.'
+        1883
     ),
     (
         'Robinson Crusoe',
+        'A novel about survival and self-reliance.',
         10,
         5,
-        1719,
-        'A novel about survival and self-reliance.'
+        1719
     ),
     (
         'A Room of One''s Own',
+        'An essay on women and literature.',
         22,
         9,
-        1929,
-        'An essay on women and literature.'
+        1929
     ),
     (
         'The Book Thief',
+        'A WWII novel narrated by Death.',
         26,
         1,
-        2005,
-        'A WWII novel narrated by Death.'
+        2005
     ),
     (
         'The Wind-Up Bird Chronicle',
+        'A surreal novel about self-discovery.',
         29,
         1,
-        1994,
-        'A surreal novel about self-discovery.'
+        1994
     ),
     (
         'A Clockwork Orange',
+        'A dystopian novel about free will and crime.',
         23,
         3,
-        1962,
-        'A dystopian novel about free will and crime.'
+        1962
     ),
     (
         'The Death of Ivan Ilyich',
+        'A novel about mortality and meaning.',
         9,
         5,
-        1886,
-        'A novel about mortality and meaning.'
+        1886
     );
 
 -- Insert ratings (use ratings.js to generate these)
