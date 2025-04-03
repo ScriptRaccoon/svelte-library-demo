@@ -1,3 +1,5 @@
+export const prerender = true
+
 import { error } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import { type AuthorList } from '$lib/schemas'
