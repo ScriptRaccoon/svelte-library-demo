@@ -3,6 +3,16 @@
 
 	let { data } = $props()
 	let books = $derived(data.books)
+
+	let submitted = $state(false)
+
+	function handle_submit(e: SubmitEvent) {
+		if (submitted) {
+			e.preventDefault()
+			return
+		}
+		submitted = true
+	}
 </script>
 
 <svelte:head>
@@ -11,7 +21,7 @@
 
 <h2>Search for Books</h2>
 
-<form action="/search" method="GET" use:enhance>
+<form action="/search" method="GET" use:enhance onsubmit={handle_submit}>
 	<label for="query">Query</label>
 	<input
 		type="text"
@@ -22,7 +32,13 @@
 		required
 		value={data.query ?? ''}
 	/>
-	<button type="submit" class="button">Submit</button>
+	<button type="submit" class="button" disabled={submitted}>
+		{#if submitted}
+			Searching...
+		{:else}
+			Search
+		{/if}
+	</button>
 </form>
 
 {#if books}
