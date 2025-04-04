@@ -8,7 +8,7 @@ export const load: PageServerLoad = async (event) => {
 	const res = await event.fetch('/api/v1/genres')
 
 	if (!res.ok) {
-		return error(res.status, 'Failed to fetch genres')
+		error(res.status, 'Failed to fetch genres')
 	}
 
 	const genres: GenreList = await res.json()

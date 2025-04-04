@@ -29,20 +29,20 @@ GROUP BY
 export const GET: RequestHandler = async (event) => {
 	const id = event.url.searchParams.get('id')
 	if (!id) {
-		return error(400, 'Missing id')
+		error(400, 'Missing id')
 	}
 	try {
 		const { rows } = await db.execute(sql, { id })
 		if (rows.length === 0) {
-			return error(404, 'Book not found')
+			error(404, 'Book not found')
 		}
 		const { data: book, success } = BookSchema.safeParse(rows[0])
 		if (!success) {
-			return error(500, 'Invalid book data')
+			error(500, 'Invalid book data')
 		}
 		return json(book)
 	} catch (err) {
 		console.error(err)
-		return error(500, 'Cannot fetch book')
+		error(500, 'Cannot fetch book')
 	}
 }

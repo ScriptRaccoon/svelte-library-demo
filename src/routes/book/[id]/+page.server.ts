@@ -11,13 +11,13 @@ export const load: PageServerLoad = async (event) => {
 	])
 
 	if (!res_book.ok) {
-		return error(res_book.status, 'Failed to fetch book')
+		error(res_book.status, 'Failed to fetch book')
 	}
 
 	const book: Book = await res_book.json()
 
 	if (!res_rating.ok) {
-		return error(res_rating.status, 'Failed to fetch rating')
+		error(res_rating.status, 'Failed to fetch rating')
 	}
 
 	const user_rating: number | null = await res_rating.json()

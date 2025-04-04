@@ -8,7 +8,7 @@ export const load: PageServerLoad = async (event) => {
 	const res = await event.fetch('/api/v1/books/all')
 
 	if (!res.ok) {
-		return error(res.status, 'Failed to fetch books')
+		error(res.status, 'Failed to fetch books')
 	}
 
 	const books: BookList = await res.json()

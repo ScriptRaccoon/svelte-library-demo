@@ -8,7 +8,7 @@ export const load: PageServerLoad = async (event) => {
 	const res = await event.fetch('/api/v1/authors')
 
 	if (!res.ok) {
-		return error(res.status, 'Failed to fetch authors')
+		error(res.status, 'Failed to fetch authors')
 	}
 
 	const authors: AuthorList = await res.json()

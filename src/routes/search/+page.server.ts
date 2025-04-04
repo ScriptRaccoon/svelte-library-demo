@@ -10,7 +10,7 @@ export const load = async (event) => {
 	const res = await event.fetch(`/api/v1/search?q=${encodeURIComponent(query)}`)
 
 	if (!res.ok) {
-		return error(res.status, 'Search failed')
+		error(res.status, 'Search failed')
 	}
 
 	const books: BookList = await res.json()

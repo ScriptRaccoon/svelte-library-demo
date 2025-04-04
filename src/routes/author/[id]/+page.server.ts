@@ -11,11 +11,11 @@ export const load: PageServerLoad = async (event) => {
 	])
 
 	if (!res_author.ok) {
-		return error(res_author.status, 'Failed to fetch author')
+		error(res_author.status, 'Failed to fetch author')
 	}
 
 	if (!res_books.ok) {
-		return error(res_books.status, 'Failed to fetch books')
+		error(res_books.status, 'Failed to fetch books')
 	}
 
 	const author: Author = await res_author.json()

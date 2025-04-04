@@ -11,11 +11,11 @@ export const load: PageServerLoad = async (event) => {
 	])
 
 	if (!res_genre.ok) {
-		return error(res_genre.status, 'Failed to fetch genre')
+		error(res_genre.status, 'Failed to fetch genre')
 	}
 
 	if (!res_books.ok) {
-		return error(res_books.status, 'Failed to fetch books')
+		error(res_books.status, 'Failed to fetch books')
 	}
 
 	const genre: Genre = await res_genre.json()

@@ -8,11 +8,11 @@ export const GET: RequestHandler = async () => {
 		const { rows } = await db.execute('SELECT id, name FROM authors')
 		const { data: authors, success } = AuthorListSchema.safeParse(rows)
 		if (!success) {
-			return error(500, 'Invalid authors data')
+			error(500, 'Invalid authors data')
 		}
 		return json(authors)
 	} catch (err) {
 		console.error(err)
-		return error(500, 'Cannot fetch authors')
+		error(500, 'Cannot fetch authors')
 	}
 }
