@@ -9,12 +9,12 @@ SELECT
     title,
     authors.name AS author_name,
     authors.id AS author_id,
-    books.description as description,
+    books.description AS description,
     published_year,
     genres.name AS genre_name,
     genre_id,
     COUNT(ratings.rating) AS rating_count,
-    COALESCE(AVG(ratings.rating), 0) AS average_rating
+    COALESCE(AVG(ratings.rating), 0) AS rating_average
 FROM
     books
     INNER JOIN authors ON books.author_id = authors.id

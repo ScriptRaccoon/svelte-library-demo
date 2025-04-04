@@ -47,7 +47,7 @@ export const BookSchema = z.object({
 	genre_id: z.number(),
 	published_year: z.number().nullable(),
 	rating_count: z.number().min(0),
-	average_rating: z.number().min(0).max(5),
+	rating_average: z.number().min(0).max(5),
 })
 
 export type Book = z.infer<typeof BookSchema>

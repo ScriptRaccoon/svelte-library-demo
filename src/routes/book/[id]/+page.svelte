@@ -93,9 +93,9 @@
 {/if}
 
 <section class="rating-container" aria-label="rating">
-	<StarRating rating={book.average_rating} />
+	<StarRating rating={book.rating_average} />
 	<div class="rating-description">
-		{book.average_rating.toFixed(1)} (based on {book.rating_count} ratings)
+		{book.rating_average.toFixed(1)} (based on {book.rating_count} ratings)
 	</div>
 </section>
 
