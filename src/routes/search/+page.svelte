@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { enhance } from '$app/forms'
 	import { navigating } from '$app/state'
 	import { faSearch } from '@fortawesome/free-solid-svg-icons'
 	import Fa from 'svelte-fa'
@@ -14,7 +13,7 @@
 
 <h2>Search for Books</h2>
 
-<form action="/search" method="GET" use:enhance>
+<form action="/search" method="GET">
 	<label for="query">Query</label>
 	<input
 		type="search"
