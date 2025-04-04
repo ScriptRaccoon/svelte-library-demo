@@ -2,7 +2,7 @@ import { error, json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 import { db } from '$lib/server/db'
 import { BookListSchema } from '$lib/schemas'
-import { handle_error } from '$lib/server/utils'
+import { handle_error, handle_validation } from '$lib/server/utils'
 
 export const GET: RequestHandler = async (event) => {
 	const query = event.url.searchParams.get('q')
@@ -19,10 +19,7 @@ export const GET: RequestHandler = async (event) => {
 		'Search failed',
 	)
 
-	const { data: books, success } = BookListSchema.safeParse(rows)
-	if (!success) {
-		error(500, 'Invalid books data')
-	}
+	const books = handle_validation(rows, BookListSchema)
 
 	return json(books)
 }

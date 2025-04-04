@@ -2,7 +2,7 @@ import { error, json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 import { db } from '$lib/server/db'
 import { GenreSchema } from '$lib/schemas'
-import { handle_error } from '$lib/server/utils'
+import { handle_error, handle_validation } from '$lib/server/utils'
 
 export const GET: RequestHandler = async (event) => {
 	const id = event.url.searchParams.get('id')
@@ -20,10 +20,7 @@ export const GET: RequestHandler = async (event) => {
 		error(404, 'Genre not found')
 	}
 
-	const { data: genre, success } = GenreSchema.safeParse(rows[0])
-	if (!success) {
-		error(500, 'Invalid genre data')
-	}
+	const genre = handle_validation(rows[0], GenreSchema)
 
 	return json(genre)
 }

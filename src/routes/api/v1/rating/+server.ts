@@ -2,7 +2,7 @@ import { error, json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 import { db } from '$lib/server/db'
 import { RatingRequestSchema, RatingResponseSchema } from '$lib/schemas'
-import { handle_error } from '$lib/server/utils'
+import { handle_error, handle_validation } from '$lib/server/utils'
 
 const post_sql = `
 INSERT INTO
@@ -19,12 +19,7 @@ export const POST: RequestHandler = async (event) => {
 
 	const body = await handle_error(() => event.request.json(), 'Invalid request body')
 
-	const { data, success } = RatingRequestSchema.safeParse(body)
-	if (!success) {
-		error(400, 'Invalid request body')
-	}
-
-	const { book_id, rating } = data
+	const { book_id, rating } = handle_validation(body, RatingRequestSchema)
 
 	await handle_error(
 		() => db.execute(post_sql, { user_id, book_id, rating }),
@@ -64,11 +59,7 @@ export const GET: RequestHandler = async (event) => {
 		return json(null)
 	}
 
-	const { data, success } = RatingResponseSchema.safeParse(rows[0])
-	if (!success) {
-		error(500, 'Invalid rating data')
-	}
-	const { rating } = data
+	const { rating } = handle_validation(rows[0], RatingResponseSchema)
 
 	return json(rating)
 }
@@ -89,12 +80,7 @@ export const PATCH: RequestHandler = async (event) => {
 
 	const body = await handle_error(() => event.request.json(), 'Invalid request body')
 
-	const { data, success } = RatingRequestSchema.safeParse(body)
-	if (!success) {
-		error(400, 'Invalid request body')
-	}
-
-	const { book_id, rating } = data
+	const { book_id, rating } = handle_validation(body, RatingRequestSchema)
 
 	await handle_error(
 		() => db.execute(patch_sql, { user_id, book_id, rating }),

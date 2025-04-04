@@ -2,7 +2,7 @@ import { error, json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 import { db } from '$lib/server/db'
 import { AuthorSchema } from '$lib/schemas'
-import { handle_error } from '$lib/server/utils'
+import { handle_error, handle_validation } from '$lib/server/utils'
 
 export const GET: RequestHandler = async (event) => {
 	const id = event.url.searchParams.get('id')
@@ -20,10 +20,7 @@ export const GET: RequestHandler = async (event) => {
 		error(404, 'Author not found')
 	}
 
-	const { data: author, success } = AuthorSchema.safeParse(rows[0])
-	if (!success) {
-		error(500, 'Invalid author data')
-	}
+	const author = handle_validation(rows[0], AuthorSchema)
 
 	return json(author)
 }

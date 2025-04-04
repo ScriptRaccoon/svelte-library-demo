@@ -1,8 +1,8 @@
 import type { RequestHandler } from './$types'
-import { error, json } from '@sveltejs/kit'
+import { json } from '@sveltejs/kit'
 import { db } from '$lib/server/db'
 import { BookListSchema } from '$lib/schemas'
-import { handle_error } from '$lib/server/utils'
+import { handle_error, handle_validation } from '$lib/server/utils'
 import type { ResultSet } from '@libsql/client'
 
 function query_books(
@@ -34,11 +34,7 @@ export const GET: RequestHandler = async (event) => {
 		() => query_books(genre_id, author_id),
 		'Cannot fetch books',
 	)
-
-	const { data: books, success } = BookListSchema.safeParse(rows)
-	if (!success) {
-		error(500, 'Invalid books data')
-	}
+	const books = handle_validation(rows, BookListSchema)
 
 	return json(books)
 }

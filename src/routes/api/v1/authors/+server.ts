@@ -1,8 +1,8 @@
 import { db } from '$lib/server/db'
-import { error, json } from '@sveltejs/kit'
+import { json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 import { AuthorListSchema } from '$lib/schemas'
-import { handle_error } from '$lib/server/utils'
+import { handle_error, handle_validation } from '$lib/server/utils'
 
 export const GET: RequestHandler = async () => {
 	const { rows } = await handle_error(
@@ -10,10 +10,7 @@ export const GET: RequestHandler = async () => {
 		'Cannot fetch authors',
 	)
 
-	const { data: authors, success } = AuthorListSchema.safeParse(rows)
-	if (!success) {
-		error(500, 'Invalid authors data')
-	}
+	const authors = handle_validation(rows, AuthorListSchema)
 
 	return json(authors)
 }
