@@ -4,7 +4,7 @@ import { db } from '$lib/server/db'
 import { RatingRequestSchema, RatingResponseSchema } from '$lib/schemas'
 import { handle_error, handle_validation } from '$lib/server/utils'
 
-const post_sql = `
+const add_rating_sql = `
 INSERT INTO
     ratings (user_id, book_id, rating)
 VALUES
@@ -22,14 +22,14 @@ export const POST: RequestHandler = async (event) => {
 	const { book_id, rating } = handle_validation(body, RatingRequestSchema)
 
 	await handle_error(
-		() => db.execute(post_sql, { user_id, book_id, rating }),
+		() => db.execute(add_rating_sql, { user_id, book_id, rating }),
 		'Cannot save rating',
 	)
 
 	return json({ message: 'Rating received' })
 }
 
-const get_sql = `
+const get_rating_sql = `
 SELECT
     rating
 FROM
@@ -51,7 +51,7 @@ export const GET: RequestHandler = async (event) => {
 	}
 
 	const { rows } = await handle_error(
-		() => db.execute(get_sql, { user_id, book_id }),
+		() => db.execute(get_rating_sql, { user_id, book_id }),
 		'Cannot fetch rating',
 	)
 
@@ -64,7 +64,7 @@ export const GET: RequestHandler = async (event) => {
 	return json(rating)
 }
 
-const patch_sql = `
+const update_rating_sql = `
 UPDATE ratings
 	SET rating = :rating
 WHERE
@@ -83,7 +83,7 @@ export const PATCH: RequestHandler = async (event) => {
 	const { book_id, rating } = handle_validation(body, RatingRequestSchema)
 
 	await handle_error(
-		() => db.execute(patch_sql, { user_id, book_id, rating }),
+		() => db.execute(update_rating_sql, { user_id, book_id, rating }),
 		'Cannot update rating',
 	)
 
