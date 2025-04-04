@@ -1,5 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state'
+	import {
+		faBookOpen,
+		faHomeAlt,
+		faLayerGroup,
+		faSearch,
+		faUsers,
+	} from '@fortawesome/free-solid-svg-icons'
+	import Fa from 'svelte-fa'
 	let path = $derived(page.url.pathname)
 </script>
 
@@ -8,20 +16,25 @@
 
 	<nav>
 		<ul>
-			<li>
-				<a class:current={path === '/'} href="/">Home</a>
+			<li class:current={path === '/'}>
+				<Fa icon={faHomeAlt} />
+				<a href="/">Home</a>
 			</li>
-			<li>
-				<a class:current={path.includes('book')} href="/books">Books</a>
+			<li class:current={path.includes('book')}>
+				<Fa icon={faBookOpen} />
+				<a href="/books">Books</a>
 			</li>
-			<li>
-				<a class:current={path.includes('genre')} href="/genres">Genres</a>
+			<li class:current={path.includes('genre')}>
+				<Fa icon={faLayerGroup} />
+				<a href="/genres">Genres</a>
 			</li>
-			<li>
-				<a class:current={path.includes('author')} href="/authors">Authors</a>
+			<li class:current={path.includes('author')}>
+				<Fa icon={faUsers} />
+				<a href="/authors">Authors</a>
 			</li>
-			<li>
-				<a class:current={path.includes('search')} href="/search">Search</a>
+			<li class:current={path.includes('search')}>
+				<Fa icon={faSearch} />
+				<a href="/search">Search</a>
 			</li>
 		</ul>
 	</nav>
@@ -32,20 +45,22 @@
 		text-align: center;
 		padding-block: 1.25rem;
 		background-color: var(--primary-color);
+		text-wrap: balance;
 	}
 
 	nav {
-		margin-top: 0.25rem;
+		margin-top: 0.5rem;
 	}
 
 	ul {
 		display: flex;
 		justify-content: center;
+		flex-wrap: wrap;
 		list-style: none;
-		gap: 1rem;
+		gap: 0.25rem 1rem;
 	}
 
-	a.current {
+	li.current {
 		color: var(--highlight-color);
 	}
 </style>

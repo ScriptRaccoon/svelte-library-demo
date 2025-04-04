@@ -1,5 +1,12 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation'
+	import {
+		faCalendar,
+		faLayerGroup,
+		faQuoteLeft,
+		faQuoteRight,
+	} from '@fortawesome/free-solid-svg-icons'
+	import Fa from 'svelte-fa'
 	import StarRating from 'svelte-star-rating'
 	let { data } = $props()
 	let book = $derived(data.book)
@@ -89,7 +96,11 @@
 <h2 class="title">{book.title}</h2>
 
 {#if book.description}
-	<p class="description">{book.description}</p>
+	<p class="description">
+		<Fa icon={faQuoteLeft} />
+		{book.description}
+		<Fa icon={faQuoteRight} />
+	</p>
 {/if}
 
 <section class="rating-container" aria-label="rating">
@@ -99,12 +110,14 @@
 	</div>
 </section>
 
-<section>
+<section class="details">
 	<h3>Details</h3>
 	<div>
+		<Fa icon={faCalendar} />
 		<strong>Year of publication</strong> &ndash; {book.published_year}
 	</div>
 	<div>
+		<Fa icon={faLayerGroup} />
 		<strong>Genre</strong> &ndash;
 		<a href="/genre/{book.genre_id}">
 			{book.genre_name}
@@ -164,5 +177,10 @@
 			flex-direction: row;
 			gap: 1rem;
 		}
+	}
+
+	.details :global(svg) {
+		width: 2rem;
+		margin-left: -0.25rem;
 	}
 </style>

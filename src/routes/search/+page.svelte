@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
 	import { navigating } from '$app/state'
+	import { faSearch } from '@fortawesome/free-solid-svg-icons'
+	import Fa from 'svelte-fa'
 
 	let { data } = $props()
 	let books = $derived(data.books)
@@ -24,6 +26,7 @@
 		value={data.query ?? ''}
 	/>
 	<button type="submit" class="button" disabled={!!navigating.from}>
+		<Fa icon={faSearch} />
 		{#if navigating.from}
 			Searching...
 		{:else}
