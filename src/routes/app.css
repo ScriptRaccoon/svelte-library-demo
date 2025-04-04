@@ -115,14 +115,14 @@ select {
 	}
 }
 
-input[type='text'] {
+input {
 	font: inherit;
 	color: inherit;
 	background: none;
 	border: none;
 }
 
-input[type='text'].input {
+input.input {
 	border: 1px solid var(--secondary-font-color);
 	background-color: var(--bg-color);
 	padding: 0.25rem 0.5rem;

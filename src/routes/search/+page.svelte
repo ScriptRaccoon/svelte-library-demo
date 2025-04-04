@@ -17,7 +17,7 @@
 <form action="/search" method="GET" use:enhance>
 	<label for="query">Query</label>
 	<input
-		type="text"
+		type="search"
 		id="query"
 		name="q"
 		placeholder="Search..."
