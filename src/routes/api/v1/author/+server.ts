@@ -14,7 +14,10 @@ export const GET: RequestHandler = async (event) => {
 		if (rows.length === 0) {
 			return error(404, 'Author not found')
 		}
-		const author = AuthorSchema.parse(rows[0])
+		const { data: author, success } = AuthorSchema.safeParse(rows[0])
+		if (!success) {
+			return error(500, 'Invalid author data')
+		}
 		return json(author)
 	} catch (err) {
 		console.error(err)

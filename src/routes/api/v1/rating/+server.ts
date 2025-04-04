@@ -16,8 +16,13 @@ export const POST: RequestHandler = async (event) => {
 		if (!user_id) {
 			return error(401, 'Unauthorized')
 		}
+
 		const body = await event.request.json()
-		const { book_id, rating } = RatingRequestSchema.parse(body)
+		const { data, success } = RatingRequestSchema.safeParse(body)
+		if (!success) {
+			return error(400, 'Invalid request body')
+		}
+		const { book_id, rating } = data
 		await db.execute(post_sql, { user_id, book_id, rating })
 		return json({ message: 'Rating received' })
 	} catch (err) {
@@ -52,8 +57,11 @@ export const GET: RequestHandler = async (event) => {
 		if (rows.length === 0) {
 			return json(null)
 		}
-
-		const { rating } = RatingResponseSchema.parse(rows[0])
+		const { data, success } = RatingResponseSchema.safeParse(rows[0])
+		if (!success) {
+			return error(500, 'Invalid rating data')
+		}
+		const { rating } = data
 		return json(rating)
 	} catch (err) {
 		console.error(err)
@@ -77,11 +85,12 @@ export const PATCH: RequestHandler = async (event) => {
 		}
 
 		const body = await event.request.json()
-
-		const { book_id, rating } = RatingRequestSchema.parse(body)
-
+		const { data, success } = RatingRequestSchema.safeParse(body)
+		if (!success) {
+			return error(400, 'Invalid request body')
+		}
+		const { book_id, rating } = data
 		await db.execute(patch_sql, { user_id, book_id, rating })
-
 		return json({ message: 'Rating updated' })
 	} catch (err) {
 		console.error(err)

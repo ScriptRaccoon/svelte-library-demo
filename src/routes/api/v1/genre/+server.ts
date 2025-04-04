@@ -14,7 +14,10 @@ export const GET: RequestHandler = async (event) => {
 		if (rows.length === 0) {
 			return error(404, 'Genre not found')
 		}
-		const genre = GenreSchema.parse(rows[0])
+		const { data: genre, success } = GenreSchema.safeParse(rows[0])
+		if (!success) {
+			return error(500, 'Invalid genre data')
+		}
 		return json(genre)
 	} catch (err) {
 		console.error(err)

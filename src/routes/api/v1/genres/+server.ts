@@ -6,7 +6,10 @@ import { GenreListSchema } from '$lib/schemas'
 export const GET: RequestHandler = async () => {
 	try {
 		const { rows } = await db.execute('SELECT id, name FROM genres')
-		const genres = GenreListSchema.parse(rows)
+		const { data: genres, success } = GenreListSchema.safeParse(rows)
+		if (!success) {
+			return error(500, 'Invalid genres data')
+		}
 		return json(genres)
 	} catch (err) {
 		console.error(err)

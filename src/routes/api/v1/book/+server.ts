@@ -33,7 +33,13 @@ export const GET: RequestHandler = async (event) => {
 	}
 	try {
 		const { rows } = await db.execute(sql, { id })
-		const book = BookSchema.parse(rows[0])
+		if (rows.length === 0) {
+			return error(404, 'Book not found')
+		}
+		const { data: book, success } = BookSchema.safeParse(rows[0])
+		if (!success) {
+			return error(500, 'Invalid book data')
+		}
 		return json(book)
 	} catch (err) {
 		console.error(err)

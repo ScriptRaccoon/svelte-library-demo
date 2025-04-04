@@ -13,7 +13,10 @@ export const GET: RequestHandler = async (event) => {
 			'SELECT id, title FROM books WHERE title LIKE ? OR description LIKE ?',
 			[`%${query}%`, `%${query}%`],
 		)
-		const books = BookListSchema.parse(rows)
+		const { data: books, success } = BookListSchema.safeParse(rows)
+		if (!success) {
+			return error(500, 'Invalid books data')
+		}
 		return json(books)
 	} catch (err) {
 		console.error(err)

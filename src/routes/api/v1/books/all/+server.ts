@@ -6,7 +6,10 @@ import { BookListSchema } from '$lib/schemas'
 export const GET: RequestHandler = async () => {
 	try {
 		const { rows } = await db.execute('SELECT id, title FROM books')
-		const books = BookListSchema.parse(rows)
+		const { data: books, success } = BookListSchema.safeParse(rows)
+		if (!success) {
+			return error(500, 'Invalid books data')
+		}
 		return json(books)
 	} catch (err) {
 		console.error(err)

@@ -26,7 +26,10 @@ export const GET: RequestHandler = async (event) => {
 	const author_id = event.url.searchParams.get('author_id')
 	try {
 		const { rows } = await query_books(genre_id, author_id)
-		const books = BookListSchema.parse(rows)
+		const { data: books, success } = BookListSchema.safeParse(rows)
+		if (!success) {
+			return error(500, 'Invalid books data')
+		}
 		return json(books)
 	} catch (err) {
 		console.error(err)
