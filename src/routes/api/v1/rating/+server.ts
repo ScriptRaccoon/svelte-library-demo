@@ -2,6 +2,7 @@ import { error, json } from '@sveltejs/kit'
 import type { RequestHandler } from './$types'
 import { db } from '$lib/server/db'
 import { RatingRequestSchema, RatingResponseSchema } from '$lib/schemas'
+import { handle_error } from '$lib/server/utils'
 
 const post_sql = `
 INSERT INTO
@@ -11,24 +12,26 @@ VALUES
 `
 
 export const POST: RequestHandler = async (event) => {
-	try {
-		const user_id = event.locals.user_id
-		if (!user_id) {
-			error(401, 'Unauthorized')
-		}
-
-		const body = await event.request.json()
-		const { data, success } = RatingRequestSchema.safeParse(body)
-		if (!success) {
-			error(400, 'Invalid request body')
-		}
-		const { book_id, rating } = data
-		await db.execute(post_sql, { user_id, book_id, rating })
-		return json({ message: 'Rating received' })
-	} catch (err) {
-		console.error(err)
-		error(500, 'Cannot save rating')
+	const user_id = event.locals.user_id
+	if (!user_id) {
+		error(401, 'Unauthorized')
 	}
+
+	const body = await handle_error(() => event.request.json(), 'Invalid request body')
+
+	const { data, success } = RatingRequestSchema.safeParse(body)
+	if (!success) {
+		error(400, 'Invalid request body')
+	}
+
+	const { book_id, rating } = data
+
+	await handle_error(
+		() => db.execute(post_sql, { user_id, book_id, rating }),
+		'Cannot save rating',
+	)
+
+	return json({ message: 'Rating received' })
 }
 
 const get_sql = `
@@ -52,21 +55,22 @@ export const GET: RequestHandler = async (event) => {
 		error(400, 'Missing book_id')
 	}
 
-	try {
-		const { rows } = await db.execute(get_sql, { user_id, book_id })
-		if (rows.length === 0) {
-			return json(null)
-		}
-		const { data, success } = RatingResponseSchema.safeParse(rows[0])
-		if (!success) {
-			error(500, 'Invalid rating data')
-		}
-		const { rating } = data
-		return json(rating)
-	} catch (err) {
-		console.error(err)
-		error(500, 'Cannot fetch rating')
+	const { rows } = await handle_error(
+		() => db.execute(get_sql, { user_id, book_id }),
+		'Cannot fetch rating',
+	)
+
+	if (rows.length === 0) {
+		return json(null)
 	}
+
+	const { data, success } = RatingResponseSchema.safeParse(rows[0])
+	if (!success) {
+		error(500, 'Invalid rating data')
+	}
+	const { rating } = data
+
+	return json(rating)
 }
 
 const patch_sql = `
@@ -78,22 +82,24 @@ WHERE
 `
 
 export const PATCH: RequestHandler = async (event) => {
-	try {
-		const user_id = event.locals.user_id
-		if (!user_id) {
-			error(401, 'Unauthorized')
-		}
-
-		const body = await event.request.json()
-		const { data, success } = RatingRequestSchema.safeParse(body)
-		if (!success) {
-			error(400, 'Invalid request body')
-		}
-		const { book_id, rating } = data
-		await db.execute(patch_sql, { user_id, book_id, rating })
-		return json({ message: 'Rating updated' })
-	} catch (err) {
-		console.error(err)
-		error(500, 'Cannot update rating')
+	const user_id = event.locals.user_id
+	if (!user_id) {
+		error(401, 'Unauthorized')
 	}
+
+	const body = await handle_error(() => event.request.json(), 'Invalid request body')
+
+	const { data, success } = RatingRequestSchema.safeParse(body)
+	if (!success) {
+		error(400, 'Invalid request body')
+	}
+
+	const { book_id, rating } = data
+
+	await handle_error(
+		() => db.execute(patch_sql, { user_id, book_id, rating }),
+		'Cannot update rating',
+	)
+
+	return json({ message: 'Rating updated' })
 }
