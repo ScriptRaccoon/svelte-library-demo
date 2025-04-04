@@ -13,9 +13,6 @@ VALUES
 
 export const POST: RequestHandler = async (event) => {
 	const user_id = event.locals.user_id
-	if (!user_id) {
-		error(401, 'Unauthorized')
-	}
 
 	const body = await handle_error(() => event.request.json(), 'Invalid request body')
 
@@ -41,9 +38,6 @@ WHERE
 
 export const GET: RequestHandler = async (event) => {
 	const user_id = event.locals.user_id
-	if (!user_id) {
-		error(401, 'Unauthorized')
-	}
 
 	const book_id = event.url.searchParams.get('book_id')
 	if (!book_id) {
@@ -74,9 +68,6 @@ WHERE
 
 export const PATCH: RequestHandler = async (event) => {
 	const user_id = event.locals.user_id
-	if (!user_id) {
-		error(401, 'Unauthorized')
-	}
 
 	const body = await handle_error(() => event.request.json(), 'Invalid request body')
 
