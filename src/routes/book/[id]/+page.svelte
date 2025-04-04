@@ -129,7 +129,7 @@
 	<h3>Rate the book</h3>
 
 	<form class="rating-form" onsubmit={handle_submit}>
-		<select bind:value={selected_user_rating} class="select">
+		<select bind:value={selected_user_rating} class="select" aria-label="rating">
 			{#each { length: 5 } as _, i}
 				<option value={i + 1}>{i + 1} &ndash; {rating_texts[i]}</option>
 			{/each}
