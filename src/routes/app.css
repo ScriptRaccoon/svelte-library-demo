@@ -133,3 +133,16 @@ input.input {
 		outline: 2px solid var(--font-color);
 	}
 }
+
+.input-group {
+	label {
+		display: block;
+		margin-bottom: 0.25rem;
+	}
+
+	input {
+		display: block;
+		width: 100%;
+		margin-bottom: 1rem;
+	}
+}

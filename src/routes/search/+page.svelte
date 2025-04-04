@@ -14,16 +14,19 @@
 <h2>Search for Books</h2>
 
 <form action="/search" method="GET">
-	<label for="query">Query</label>
-	<input
-		type="search"
-		id="query"
-		name="q"
-		placeholder="Search..."
-		class="input"
-		required
-		value={data.query ?? ''}
-	/>
+	<div class="input-group">
+		<label for="query">Query</label>
+		<input
+			type="search"
+			id="query"
+			name="q"
+			placeholder="Search..."
+			class="input"
+			required
+			value={data.query ?? ''}
+		/>
+	</div>
+
 	<button type="submit" class="button" disabled={!!navigating.from}>
 		<Fa icon={faSearch} />
 		{#if navigating.from}
@@ -55,17 +58,6 @@
 {/if}
 
 <style>
-	label {
-		display: block;
-		margin-bottom: 0.25rem;
-	}
-
-	input {
-		display: block;
-		width: 100%;
-		margin-bottom: 1rem;
-	}
-
 	section {
 		margin-block: 2rem;
 	}
