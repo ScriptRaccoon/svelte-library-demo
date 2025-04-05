@@ -1,19 +1,5 @@
-<script lang="ts">
-	let { data } = $props()
-</script>
+<h2>List of Genres</h2>
 
-<svelte:head>
-	<title>Genres</title>
-</svelte:head>
-
-<h2>Genres</h2>
-
-<ul class="list">
-	{#each data.genres as genre (genre.id)}
-		<li>
-			<a href="/genre/{genre.id}">
-				{genre.name}
-			</a>
-		</li>
-	{/each}
-</ul>
+<a href="/genre/1">Genre 1</a>
+<br />
+<a href="/genre/2">Genre 2</a>

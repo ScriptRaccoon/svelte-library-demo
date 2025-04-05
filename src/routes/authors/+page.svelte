@@ -1,19 +1,5 @@
-<script lang="ts">
-	let { data } = $props()
-</script>
+<h2>List of authors</h2>
 
-<svelte:head>
-	<title>Authors</title>
-</svelte:head>
-
-<h2>Authors</h2>
-
-<ul class="list">
-	{#each data.authors as author (author.id)}
-		<li>
-			<a href="/author/{author.id}">
-				{author.name}
-			</a>
-		</li>
-	{/each}
-</ul>
+<a href="/author/1">Author 1</a>
+<br />
+<a href="/author/2">Author 2</a>

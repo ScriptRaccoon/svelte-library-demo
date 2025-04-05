@@ -11,9 +11,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
-		"lint": "prettier --check .",
-		"db:shell": "sqlite3 db/library.db",
-		"db:seed": "sqlite3 db/library.db < db/seed.sql"
+		"lint": "prettier --check ."
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-netlify": "^4.4.0",
@@ -35,8 +33,6 @@
 	"dependencies": {
 		"@fortawesome/free-regular-svg-icons": "^6.7.2",
 		"@fortawesome/free-solid-svg-icons": "^6.7.2",
-		"@libsql/client": "^0.15.2",
-		"svelte-fa": "^4.0.3",
-		"zod": "^3.24.2"
+		"svelte-fa": "^4.0.3"
 	}
 }

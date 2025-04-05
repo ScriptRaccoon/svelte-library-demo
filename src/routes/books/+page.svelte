@@ -1,19 +1,5 @@
-<script lang="ts">
-	let { data } = $props()
-</script>
+<h2>List of Books</h2>
 
-<svelte:head>
-	<title>Books</title>
-</svelte:head>
-
-<h2>Books</h2>
-
-<ul class="list">
-	{#each data.books as book (book.id)}
-		<li>
-			<a href="/book/{book.id}">
-				{book.title}
-			</a>
-		</li>
-	{/each}
-</ul>
+<a href="/book/1">Book 1</a>
+<br />
+<a href="/book/2">Book 2</a>
